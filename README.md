@@ -1,3 +1,1 @@
-# Thermostat
-
-Collaborators Paul and Matt
+# Airport challenge in JS
