@@ -2,7 +2,7 @@ function Plane() {
   this._inFlight = true;
 }
 
-Plane.prototype.land = function(airport) {
+Plane.prototype.land = function(airport = new Airport) {
   airport.landPlane(this);
   this._inFlight = false;
 }

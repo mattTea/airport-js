@@ -11,15 +11,8 @@ describe("Plane", function() {
   
   describe("when instructed to land", function() {
     it("changes flightStatus from flying to landed", function() {
-      airport = new Airport;
-      plane.land(airport);
+      plane.land();
       expect(plane.isFlying()).toEqual(false);
-    });
-
-    it("lands at an airport", function() {
-      airport = new Airport;
-      plane.land(airport);
-      expect(airport.hangar).toContain(plane);
     });
   });
 });
