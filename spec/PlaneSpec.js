@@ -9,4 +9,9 @@ describe("Plane", function() {
     plane.land();
     expect(plane.isFlying()).toEqual(false);
   });
+
+  it("isFlying() when initialised", function() {
+    plane = new Plane();
+    expect(plane.isFlying()).toEqual(true);
+  });
 });
