@@ -28,6 +28,11 @@ describe("Plane", function() {
       plane.land(airport, weather);
       expect(weather.isStormy).toHaveBeenCalled();
     });
+
+    it("prevents landing when weather is stormy", function() {
+      weather.isStormy.and.returnValue(true);
+      expect(function(){ plane.land(airport, weather) }).toThrow(new Error("Landing is not possible in this storm."))
+    });
   });
   
   describe("when instructed to take-off", function() {
