@@ -1,11 +1,8 @@
 describe("Weather", function() {
-  it("responds to isStormy()", function() {
+  it("is stormy when isStormy() is true", function() {
     weather = new Weather;
-    expect(weather.isStormy()).not.toBe(undefined);
-  });
-
-  it("is fine when initialised", function() {
-    weather = new Weather;
-    expect(weather.forecast).toBe("fine");
+    spyOn(weather, "stormGenerator").and.returnValue("stormy")
+    console.log(weather.stormGenerator())
+    expect(weather.isStormy()).toBe(true);
   });
 });
