@@ -14,16 +14,6 @@ describe("Plane", function() {
   });
   
   describe("when instructed to land", function() {
-    it("changes flightStatus from flying to landed", function() {
-      plane.land(airport, weather);
-      expect(plane.isFlying()).toEqual(false);
-    });
-
-    it("calls airport.landPlane()", function() {
-      plane.land(airport, weather);
-      expect(airport.landPlane).toHaveBeenCalledWith(plane);
-    });
-
     it("checks weather", function() {
       plane.land(airport, weather);
       expect(weather.isStormy).toHaveBeenCalled();
@@ -32,6 +22,22 @@ describe("Plane", function() {
     it("prevents landing when weather is stormy", function() {
       weather.isStormy.and.returnValue(true);
       expect(function(){ plane.land(airport, weather) }).toThrow(new Error("Landing is not possible in this storm."))
+    });
+
+    describe("when weather is not stormy", function() {
+      beforeEach(function() {
+        weather.isStormy.and.returnValue(false);
+      });
+
+      it("changes flightStatus from flying to landed", function() {
+        plane.land(airport, weather);
+        expect(plane.isFlying()).toEqual(false);
+      });
+  
+      it("calls airport.landPlane()", function() {
+        plane.land(airport, weather);
+        expect(airport.landPlane).toHaveBeenCalledWith(plane);
+      });
     });
   });
   

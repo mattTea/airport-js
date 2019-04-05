@@ -7,7 +7,7 @@ Plane.prototype.land = function(airport = new Airport, weather = new Weather) {
     throw new Error("Landing is not possible in this storm.");
   } else {
     airport.landPlane(this);
-  this._inFlight = false;
+    this._inFlight = false;
   }
 }
 
