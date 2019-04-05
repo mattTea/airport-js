@@ -49,10 +49,13 @@ Weather | isStormy
 3. If isStormy -> prevent plane.land()
 
 
-
+User story 4: Prevent landing if stormy
+---------------------------------------
 As an air traffic controller 
 To ensure safety 
 I want to prevent landing when weather is stormy 
+
+
 
 As an air traffic controller 
 To ensure safety 
