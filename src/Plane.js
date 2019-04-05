@@ -10,7 +10,8 @@ Plane.prototype.land = function(airport = new Airport) {
 
 Plane.prototype.takeOff = function(airport = new Airport, weather = new Weather) {
   // guard clause -> return something if isStormy()
-  if (weather.isStormy()) {
+  var stormCheck = weather.isStormy()
+  if (stormCheck) {
     throw new Error ("Take-off is not possible in this storm.");
   } else {
     airport.launchPlane(this);

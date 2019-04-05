@@ -1,10 +1,12 @@
 describe("Plane", function() {
   let plane;
   let airport;
+  let weather;
 
   beforeEach(function() {
     plane = new Plane;
     airport = jasmine.createSpyObj('airport', ['landPlane', 'launchPlane']);
+    weather = jasmine.createSpyObj('weather', ['isStormy']);
   });
   
   it("isFlying() when initialised", function() {
@@ -16,33 +18,30 @@ describe("Plane", function() {
       plane.land(airport);
       expect(plane.isFlying()).toEqual(false);
     });
-  });
 
     it("calls airport.landPlane()", function() {
       plane.land(airport);
       expect(airport.landPlane).toHaveBeenCalledWith(plane);
     });
+  });
   
   describe("when instructed to take-off", function() {
     it("changes flightStatus from flying to landed", function() {
-      var weather = jasmine.createSpyObj('weather', ['isStormy']);
       plane.land(airport);
       expect(plane.isFlying()).toEqual(false);
       weather.isStormy.and.returnValue(false);
-      plane.takeOff(airport);
+      plane.takeOff(airport, weather);
       expect(plane.isFlying()).toEqual(true);
     });
 
     it("calls airport.launchPlane()", function() {
-      var weather = jasmine.createSpyObj('weather', ['isStormy']);
       plane.land(airport);
       weather.isStormy.and.returnValue(false);
-      plane.takeOff(airport);
+      plane.takeOff(airport, weather);
       expect(airport.launchPlane).toHaveBeenCalledWith(plane);
     });
 
     it("checks weather", function() {
-      var weather = jasmine.createSpyObj('weather', ['isStormy']);
       plane.land(airport);
       weather.isStormy.and.returnValue(false);
       plane.takeOff(airport, weather);
@@ -50,10 +49,9 @@ describe("Plane", function() {
     });
 
     it("prevents take-off when weather is stormy", function() {
-      var weather = jasmine.createSpyObj('weather', ['isStormy']);
       plane.land(airport);
       weather.isStormy.and.returnValue(true);
-      expect(function(){ plane.takeOff(airport) }).toThrow(new Error("Take-off is not possible in this storm."));
+      expect(function(){ plane.takeOff(airport, weather) }).toThrow(new Error("Take-off is not possible in this storm."));
     });
   });
 });
