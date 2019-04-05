@@ -30,9 +30,24 @@ Airport | launchPlane
 
 
 
+User story 3: Prevent take-off if stormy
+----------------------------------------
 As an air traffic controller 
 To ensure safety 
 I want to prevent takeoff when weather is stormy 
+
+Object | Messages
+--------------- | --------------------
+Plane | land
+Plane | takeOff
+Airport | landPlane
+Airport | launchPlane
+Weather | isStormy
+
+1. Weather to respond to isStormy
+2. If isStormy -> prevent plane.takeOff() & plane.land()
+
+
 
 As an air traffic controller 
 To ensure safety 
