@@ -1,5 +1,5 @@
 function Weather() {
-  // this.outlook = "fine";
+  
 }
 
 Weather.prototype.isStormy = function() {

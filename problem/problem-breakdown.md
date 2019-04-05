@@ -45,7 +45,8 @@ Airport | launchPlane
 Weather | isStormy
 
 1. Weather to respond to isStormy
-2. If isStormy -> prevent plane.takeOff() & plane.land()
+2. If isStormy -> prevent plane.takeOff()
+3. If isStormy -> prevent plane.land()
 
 
 
